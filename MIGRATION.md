@@ -4,7 +4,7 @@
   - [Vitest Addon: requires Vitest 4.0 or higher](#vitest-addon-requires-vitest-40-or-higher)
   - [Dropped support for Vite 5 and Vite 6](#dropped-support-for-vite-5-and-vite-6)
   - [Next.js: Require v15 and up](#nextjs-require-v15-and-up)
-
+  - [`storySort` moved to main](#storysort-moved-to-main)
 - [From version 10.5.x to 10.6.0](#from-version-105x-to-1060)
   - [Vue 3: `vue-docgen-api` is deprecated](#vue-3-vue-docgen-api-is-deprecated)
   - [Experimental Playwright CT integration removed](#experimental-playwright-ct-integration-removed)
@@ -586,6 +586,35 @@ Storybook has dropped support for Next.js versions below 15. The minimum support
 If you're using an older version of Next.js, you'll need to upgrade to Next.js 15 or newer to use the latest version of Storybook.
 
 For help upgrading your Next.js application, see the [Next.js upgrade guide](https://nextjs.org/docs/app/building-your-application/upgrading).
+
+### `storySort` moved to main
+
+The `parameters.options.storySort` preview configuration has been removed. Configure story sorting as a top-level field in `.storybook/main.js|ts` instead.
+
+Before:
+
+```ts
+// .storybook/preview.ts
+export default {
+  parameters: {
+    options: {
+      storySort: { order: ['Introduction', 'Components'] },
+    },
+  },
+};
+```
+
+After:
+
+```ts
+// .storybook/main.ts
+export default {
+  stories: ['../src/**/*.stories.@(js|jsx|mjs|ts|tsx)'],
+  storySort: { order: ['Introduction', 'Components'] },
+};
+```
+
+Run `npx storybook automigrate story-sort-to-main` to move literal object and array configurations automatically. Comparator functions and values that reference variables cannot be moved safely. Move those values and their dependencies to the top-level `storySort` field in main manually.
 
 ## From version 10.5.x to 10.6.0
 
