@@ -6,9 +6,9 @@
   - [Next.js: Require v15 and up](#nextjs-require-v15-and-up)
   - [Angular: requires Angular 21 or higher](#angular-requires-angular-21-or-higher)
   - [`@storybook/nextjs` is deprecated](#nextjs-storybooknextjs-is-deprecated)
+  - [React: Require v18 and up](#react-require-v18-and-up)
 
 - [From version 10.5.x to 10.6.0](#from-version-105x-to-1060)
-  - [React: Require v18 and up](#react-require-v18-and-up)
   - [Vue 3: `vue-docgen-api` is deprecated](#vue-3-vue-docgen-api-is-deprecated)
   - [Experimental Playwright CT integration removed](#experimental-playwright-ct-integration-removed)
   - [`@storybook/csf-plugin` removed](#storybookcsf-plugin-removed)
@@ -582,6 +582,7 @@ If you're using framework-specific Vite plugins, ensure they are compatible with
 
 For more information on upgrading to Vite 7, see the [Vite Migration Guide](https://vite.dev/guide/migration).
 
+
 ### Next.js: Require v15 and up
 
 Storybook has dropped support for Next.js versions below 15. The minimum supported version is now Next.js 15.
@@ -589,6 +590,7 @@ Storybook has dropped support for Next.js versions below 15. The minimum support
 If you're using an older version of Next.js, you'll need to upgrade to Next.js 15 or newer to use the latest version of Storybook.
 
 For help upgrading your Next.js application, see the [Next.js upgrade guide](https://nextjs.org/docs/app/building-your-application/upgrading).
+
 
 ### Angular: requires Angular 21 or higher
 
@@ -610,9 +612,6 @@ Key changes:
 The webpack-based `@storybook/nextjs` framework is deprecated and will be removed in Storybook 12. Storybook 11 keeps supporting it: it still builds and runs, but every run logs a deprecation warning and `storybook upgrade` lists it as deprecated.
 
 Migrate to [`@storybook/nextjs-vite`](https://www.npmjs.com/package/@storybook/nextjs-vite), which builds with Vite instead of webpack. The `nextjs-to-nextjs-vite` automigration does the work for you: run `storybook upgrade` and accept the fix, or run `storybook migrate nextjs-to-nextjs-vite` directly.
-
-## From version 10.5.x to 10.6.0
-
 ### React: Require v18 and up
 
 Storybook now requires React 18 or newer. The `react` and `react-dom` peer dependency ranges of all React-based framework packages are now `^18.0.0 || ^19.0.0`, so projects on React 16 or 17 must upgrade React before upgrading Storybook.
@@ -620,6 +619,8 @@ Storybook now requires React 18 or newer. The `react` and `react-dom` peer depen
 Storybook renders through React's new root API (`react-dom/client`), which React 18 introduced and React 19 requires. The `legacyRootApi` framework option of `@storybook/react-vite` and `@storybook/react-webpack5` has been removed along with the `@storybook/react-dom-shim/react-16` compatibility export, so there is no longer a way to opt out. If you had set `legacyRootApi: true` to ease a React 18 migration, follow [React's upgrade guide](https://react.dev/blog/2022/03/08/react-18-upgrade-guide) for your application code instead.
 
 `storybook upgrade` blocks the upgrade when it detects an unsupported `react` or `react-dom` version and links to this section. Upgrade React to 18 or 19 and run the upgrade again.
+
+## From version 10.5.x to 10.6.0
 
 ### Vue 3: `vue-docgen-api` is deprecated
 
