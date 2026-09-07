@@ -1,6 +1,7 @@
 <h1>Migration</h1>
 
 - [From version 10.x to 11.0.0](#from-version-10x-to-1100)
+  - [Sidebar label rendering: renderAriaLabel and a context argument](#sidebar-label-rendering-renderarialabel-and-a-context-argument)
   - [Vitest Addon: requires Vitest 4.0 or higher](#vitest-addon-requires-vitest-40-or-higher)
   - [Vite: requires Vite 7.0 or higher](#vite-requires-vite-70-or-higher)
   - [Next.js: Require v15 and up](#nextjs-require-v15-and-up)
@@ -539,6 +540,12 @@
   - [Deprecated embedded addons](#deprecated-embedded-addons)
 
 ## From version 10.x to 11.0.0
+
+### Sidebar label rendering: renderAriaLabel and a context argument
+
+`sidebar.renderLabel` now receives a third `context` argument, `{ isMobile: boolean; location: 'sidebar' | 'bottom-bar' }`, so labels can adapt to where they render (the sidebar tree vs. the mobile bottom bar). Existing two-argument functions keep working - the parameter is optional.
+
+`sidebar.renderAriaLabel` was added alongside it and must return a plain string; it feeds accessible names for tree entries and the mobile bottom bar's current-page announcement. When `renderLabel` returns a React element, the bottom bar now falls back to the entry name for its concatenated announcement instead of stringifying the element.
 
 ### Vitest Addon: requires Vitest 4.0 or higher
 
